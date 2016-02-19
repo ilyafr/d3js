@@ -12,7 +12,7 @@ module.exports = function(grunt) {
 		
 		dirs: {
 			input: 'source',
-			output: 'compile'
+			output: 'samples'
 		},
 		
 		copy: {
