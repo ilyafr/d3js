@@ -21,7 +21,8 @@
     "html5shiv": "3.7.2",
     "respond": "1.4.2",
     "selectivizr": "1.0.2",
-    "jquery-mousewheel": "~3.1.12"
+    "jquery-mousewheel": "~3.1.12",
+    "d3": "^3.5.16"
   },
   "devDependencies": {}
 }

@@ -1,2 +1,34 @@
+// Core variables and mixins
+@import "../../bower_components/bootstrap/less/variables.less";
+
+/* **************************** [Variables] ****************************** */
+//** Number of columns in the grid.
+@grid-columns:              48;
+//** Padding between columns. Gets divided in half for the left and right.
+@grid-gutter-width:         0px;
+
+@font-size-base:          22px;
+// @line-height-base:        1.78571428571; // 25/14
+
+@container-large-desktop:      (960px + @grid-gutter-width);
+
+
+/* *************************** [/Variables] ****************************** */
+
+@import "../../bower_components/bootstrap/less/mixins.less";
+
+// Reset and dependencies
+@import "../../bower_components/bootstrap/less/normalize.less";
+// @import "../../bower_components/bootstrap/less/print.less";
+@import "../../bower_components/bootstrap/less/glyphicons.less";
+
+// Core CSS
+@import "../../bower_components/bootstrap/less/scaffolding.less";
+@import "../../bower_components/bootstrap/less/type.less";
+@import "../../bower_components/bootstrap/less/code.less";
+@import "../../bower_components/bootstrap/less/grid.less";
+@import "../../bower_components/bootstrap/less/tables.less";
+@import "../../bower_components/bootstrap/less/forms.less";
+@import "../../bower_components/bootstrap/less/buttons.less";
 
 @import "pages/index/index";

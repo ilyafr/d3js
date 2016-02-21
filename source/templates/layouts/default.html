@@ -7,10 +7,10 @@
 		<title>
 			{{title}}
 		</title>
-
-		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-		<link rel="icon" href="images/favicon.ico" type="image/x-icon" />		
 		
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+		<link rel="icon" href="images/favicon.ico" type="image/x-icon" />	
+
 		<link rel="stylesheet" href="stylesheets/app.min.css" />
 		<link href='https://fonts.googleapis.com/css?family=Rubik:400,300,500,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 		<!--[if lt IE 9]>
@@ -22,7 +22,7 @@
 	</head>
 	<body>
 		
-		<div class="page">
+		<div class="center">
 			
 			{{> header }}
 			
@@ -37,6 +37,8 @@
 		</div>
 		
 		{{> footer-js }}
+		
+		<script src="javascripts/{{page.name}}.js"></script>
 		
 	</body>
 </html>

@@ -37,7 +37,7 @@ module.exports = function(grunt) {
 			javascripts: {
 				expand: true,
 				cwd: '<%= dirs.input %>/javascripts/',
-				src: ['libs.js'],
+				src: ['*.js'],
 				dest: '<%= dirs.output %>/javascripts/'
 			}
 		},
@@ -53,34 +53,6 @@ module.exports = function(grunt) {
 				src: ['<%= dirs.output %>/**/*.js']
 			}
 		},
-		
-		/*
-		sass: {
-			options: {
-				includePaths: ['bower_components/foundation/scss']
-			},
-			dist: {
-				options: {
-					outputStyle: 'nested', // nested, compact, compressed, expanded.
-					sourceMap: true,
-				},
-				files: {
-					'<%= dirs.input %>/stylesheets/temp/app.css': '<%= dirs.input %>/stylesheets/app.scss'
-				}
-			}
-		},
-		cssmin: {
-			stylesheets: {
-				files: [{
-					expand: true,
-					cwd: '<%= dirs.input %>/stylesheets/temp/',
-					src: ['*.css', '!*.min.css','!*.css.map'],
-					dest: '<%= dirs.input %>/stylesheets/temp/',
-					ext: '.min.css'
-				}]
-			}
-		},
-		*/
 		
 		less: {
 			build: {
@@ -128,7 +100,20 @@ module.exports = function(grunt) {
 					separator: ';'
 				},
 				files: {
-					'<%= dirs.output %>/javascripts/app.js': ['<%= dirs.input %>/javascripts/app.js'],
+					'<%= dirs.input %>/javascripts/libs.js': [
+						'bower_components/modernizr/modernizr.js'
+						
+						,'bower_components/jquery/dist/jquery.js'
+						,'bower_components/bootstrap/dist/js/bootstrap.js'
+						,'bower_components/jquery-placeholder/jquery.placeholder.js'
+
+						,'<%= dirs.input %>/javascripts/vendor/jquery.validate/jquery.validate.js'
+						,'<%= dirs.input %>/javascripts/vendor/jquery.validate/localization/messages_ru.js'
+
+						,'<%= dirs.input %>/javascripts/vendor/jquery.inputmask.3.x/inputmask.js'
+						,'<%= dirs.input %>/javascripts/vendor/jquery.inputmask.3.x/jquery.inputmask.js'
+						,'bower_components/d3/d3.js'
+					]
 				}
 			},
 			stylesheets: {
@@ -141,8 +126,8 @@ module.exports = function(grunt) {
 		uglify: {
 			build: {
 				files: {
-					'<%= dirs.output %>/javascripts/app.min.js': [
-						'<%= dirs.input %>/javascripts/app.js'
+					'<%= dirs.output %>/javascripts/libs.min.js': [
+						'<%= dirs.input %>/javascripts/libs.js'
 					]
 				}
 			}

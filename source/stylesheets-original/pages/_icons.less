@@ -1,0 +1,45 @@
+
+.icons {
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	
+	&:after {
+		content: "";
+		display: inline-block;
+		vertical-align: middle;
+		position: relative;
+		z-index: 100;
+	}
+	
+	&--airport {
+		&:after {
+			.sprite(@airport);
+		}
+	}
+	
+	&--railway {
+		&:after {
+			.sprite(@railway);
+		}
+	}
+	
+	&--action {
+		&:after {
+			.sprite(@action);
+		}
+	}
+
+	&--driver {
+		&:after {
+			.sprite(@driver);
+		}
+	}
+	
+	&--company {
+		&:after {
+			.sprite(@company);
+		}
+	}
+	
+}

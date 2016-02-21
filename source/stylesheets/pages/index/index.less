@@ -1,0 +1,57 @@
+html,
+body {
+	margin: 0px 0px;
+	padding: 0px 0px;
+	height: 100%;
+	text-align: center;
+	font-family: arial;
+}
+body:before {
+	content: "";
+	display: inline-block;
+	vertical-align: middle;
+	width: 0px;
+	height: 100%;
+	margin-left: -1px;
+}
+.center {
+	display: inline-block;
+	vertical-align: middle;
+}
+.svg-bg {
+	fill: rgba(0,0,0,0.05);
+}
+.grid {
+	line {
+		fill: none;
+		stroke: rgba(0,0,0,0.15);
+		shape-rendering: crispEdges;
+	}
+}
+.line-chart {
+	fill: none;
+	stroke-width: 2px;
+}
+
+.axis {
+	path {
+		fill: none;
+		stroke: rgba(0,0,0,0.85);
+		shape-rendering: crispEdges;
+	}
+	text {
+		font-size: 14px;
+	}
+	.tick {
+		line {
+			fill: none;
+			stroke: rgba(0,0,0,0.85);
+			shape-rendering: crispEdges;
+		}
+	}
+	&-title {
+		text-align: center;
+		font-size: 12px;
+		font-weight: 700;
+	}
+}
