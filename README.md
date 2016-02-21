@@ -1,7 +1,8 @@
 # d3js Samples
 
-npm install
+Create project:
+1. npm install
 
-bower install
+2. bower install
 
-grunt
+3. grunt
