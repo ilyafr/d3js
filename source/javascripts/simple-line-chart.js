@@ -1,3 +1,6 @@
+(function() {
+	'use strict';
+
 function simpleChart() {
 	
 	var attributes = {
@@ -297,3 +300,5 @@ d3
 	.select('#chart')
 	.data([data])
 	.call(chart);
+
+}());

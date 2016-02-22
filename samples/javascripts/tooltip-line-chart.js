@@ -1,3 +1,6 @@
+(function() {
+	'use strict';
+
 function simpleChart() {
 	
 	var xScale,
@@ -17,7 +20,6 @@ function simpleChart() {
 		},
 		'min': 10,
 		'max': 100,
-		'ticks': 12,
 		'x': function(d) { return d.time; },
 		'y': function(d) { return d.value; },
 		'formatY': d3.time.format('%y'),
@@ -49,7 +51,7 @@ function simpleChart() {
 				rwidth = width - margin.left - margin.top, // Real width
 				rheight = height - margin.top - margin.bottom, // Real height
 				min = chart.min(),
-				max = chart.max()
+				max = chart.max(),
 				duration = chart.duration(),
 				ticks = chart.ticks(),
 				dotSize = chart.dotSize();
@@ -220,9 +222,9 @@ function simpleChart() {
 	// Convert Color Function from HEX to RGBA
 	chart.hexToRgba = function(color) {
 
-		R = hexToR(color);
-		G = hexToG(color);
-		B = hexToB(color);
+		var R = hexToR(color);
+		var G = hexToG(color);
+		var B = hexToB(color);
 
 		function hexToR(h) {return parseInt((cutHex(h)).substring(0,2),16)}
 		function hexToG(h) {return parseInt((cutHex(h)).substring(2,4),16)}
@@ -415,3 +417,4 @@ d3
 	.data([data[0]])
 	.call(chart2);
 
+}());

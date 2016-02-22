@@ -1,3 +1,6 @@
+(function() {
+	'use strict';
+
 function simpleChart() {
 	
 	var xScale,
@@ -15,7 +18,6 @@ function simpleChart() {
 		},
 		'min': 10,
 		'max': 100,
-		'ticks': 12,
 		'x': function(d) { return d.time; },
 		'y': function(d) { return d.value; },
 		'formatY': d3.time.format('%y'),
@@ -47,7 +49,7 @@ function simpleChart() {
 				rwidth = width - margin.left - margin.top, // Real width
 				rheight = height - margin.top - margin.bottom, // Real height
 				min = chart.min(),
-				max = chart.max()
+				max = chart.max(),
 				duration = chart.duration(),
 				ticks = chart.ticks();
 
@@ -345,3 +347,5 @@ for( var j = 0; j < graphs; j++ ) {
 	printCharts(j);
 
 }
+
+}());

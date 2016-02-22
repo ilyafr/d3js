@@ -24,6 +24,15 @@ body:before {
 .svg-bg {
 	fill: rgba(0,0,0,0.05);
 }
+.chart-info {
+	width: 50%;
+	max-height: 100px;
+	rect {
+		fill: rgba(0,0,0,0.05);
+		stroke: rgba(0,0,0,0.15);
+		shape-rendering: crispEdges;
+	}
+}
 .grid {
 	line {
 		fill: none;
@@ -58,8 +67,18 @@ body:before {
 		font-weight: 700;
 	}
 }
-.dot {
+.dot,
+.chart-rect,
+.x-axis-text {
 	cursor: pointer;
+}
+.x-axis-text:hover,
+.chart-title,
+.axis-title {
+	font-weight: 700;
+}
+.axis-title {
+	font-size: 16px;
 }
 .chart-tip {
 	background: rgba(0,0,0,0.75);

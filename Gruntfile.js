@@ -19,7 +19,7 @@ module.exports = function(grunt) {
 			assets: {
 				expand: true,
 				cwd: '<%= dirs.input %>/images/',
-				src: ['**/*.{gif,png,jpeg,jpg,svg,woff,woff2,ttf,eot,mp3,mp4}'],
+				src: ['**/*.{ico,gif,png,jpeg,jpg,svg,woff,woff2,ttf,eot,mp3,mp4}'],
 				dest: '<%= dirs.output %>/images/'
 			},
 			fonts: {
@@ -39,6 +39,12 @@ module.exports = function(grunt) {
 				cwd: '<%= dirs.input %>/javascripts/',
 				src: ['*.js'],
 				dest: '<%= dirs.output %>/javascripts/'
+			},
+			data: {
+				expand: true,
+				cwd: '<%= dirs.input %>/data/',
+				src: ['**/*.{csv,tsv}'],
+				dest: '<%= dirs.output %>/data/'
 			}
 		},
 		
