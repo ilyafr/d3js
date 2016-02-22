@@ -37,8 +37,9 @@ function simpleChart() {
 				height = chart.height(), // Total height
 				margin = chart.margin(), // Total margin
 				rwidth = width - margin.left - margin.top, // Real width
-				rheight = height - margin.top - margin.bottom; // Real height
-			
+				rheight = height - margin.top - margin.bottom, // Real height
+				ticks = chart.ticks();
+				
 			svg
 				.enter()
 				.append('svg')
@@ -57,25 +58,25 @@ function simpleChart() {
 			var xAxis = d3.svg.axis()
 								.scale(xScale)
 								.orient('bottom')
-								.ticks(attributes.ticks)
+								.ticks(ticks)
 								.tickFormat(function(d) { return attributes.formatD(d) + ' ' + attributes.months[Number(attributes.formatM(d))]/* + ' ' + attributes.formatY(d)*/; });
 			
 			var yAxis = d3.svg.axis()
 								.scale(yScale)
 								.orient('left')
-								.ticks(attributes.ticks);
+								.ticks(ticks);
 			
 			var xGrid = d3.svg.axis()
 							.scale(yScale)
 							.orient('left')
-							.ticks(attributes.ticks)
+							.ticks(ticks)
 							.tickSize(-rwidth, 0, 0)
 							.tickFormat('');
 			
 			var yGrid = d3.svg.axis()
 							.scale(xScale)
 							.orient('bottom')
-							.ticks(attributes.ticks)
+							.ticks(ticks)
 							.tickSize(-rheight, 0, 0)
 							.tickFormat('');
 			

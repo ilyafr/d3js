@@ -113,6 +113,7 @@ module.exports = function(grunt) {
 						,'<%= dirs.input %>/javascripts/vendor/jquery.inputmask.3.x/inputmask.js'
 						,'<%= dirs.input %>/javascripts/vendor/jquery.inputmask.3.x/jquery.inputmask.js'
 						,'bower_components/d3/d3.js'
+						,'bower_components/d3-tip/index.js'
 					]
 				}
 			},

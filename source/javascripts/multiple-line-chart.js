@@ -15,6 +15,7 @@ function simpleChart() {
 		},
 		'min': 10,
 		'max': 100,
+		'ticks': 12,
 		'x': function(d) { return d.time; },
 		'y': function(d) { return d.value; },
 		'formatY': d3.time.format('%y'),
@@ -35,9 +36,7 @@ function simpleChart() {
 	
 	function chart(selected) {
 		selected.each(function(data) {
-			
-			console.log( data );
-			
+
 			var div = d3.select(this),
 				svg = div.selectAll('svg').data([data]),
 				len = data.length;
@@ -49,7 +48,8 @@ function simpleChart() {
 				rheight = height - margin.top - margin.bottom, // Real height
 				min = chart.min(),
 				max = chart.max()
-				duration = chart.duration();
+				duration = chart.duration(),
+				ticks = chart.ticks();
 
 			if( typeof xScale == 'undefined' || typeof yScale == 'undefined' ) {
 				
@@ -72,25 +72,25 @@ function simpleChart() {
 				var xAxis = d3.svg.axis()
 									.scale(xScale)
 									.orient('bottom')
-									.ticks(attributes.ticks)
+									.ticks(ticks)
 									.tickFormat(function(d) { return attributes.formatD(d) + ' ' + attributes.months[Number(attributes.formatM(d))]/* + ' ' + attributes.formatY(d)*/; });
 				
 				var yAxis = d3.svg.axis()
 									.scale(yScale)
 									.orient('left')
-									.ticks(attributes.ticks);
+									.ticks(ticks);
 				
 				var xGrid = d3.svg.axis()
 								.scale(yScale)
 								.orient('left')
-								.ticks(attributes.ticks)
+								.ticks(ticks)
 								.tickSize(-rwidth, 0, 0)
 								.tickFormat('');
 				
 				var yGrid = d3.svg.axis()
 								.scale(xScale)
 								.orient('bottom')
-								.ticks(attributes.ticks)
+								.ticks(ticks)
 								.tickSize(-rheight, 0, 0)
 								.tickFormat('');
 
@@ -324,7 +324,7 @@ var chart = simpleChart()
 					.max(max)
 					.margin({'top': 60, 'right': 60, 'bottom': 90, 'left': 80})
 					.duration(duration)
-					.chartName('Линейный график');
+					.chartName('Линейный мульти-график');
 
 					
 for( var j = 0; j < graphs; j++ ) {

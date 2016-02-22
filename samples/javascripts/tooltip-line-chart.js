@@ -2,7 +2,9 @@ function simpleChart() {
 	
 	var xScale,
 		yScale,
-		index = 1;
+		index = 1,
+		tip,
+		tipDiv;
 	
 	var attributes = {
 		'width': 800,
@@ -49,7 +51,8 @@ function simpleChart() {
 				min = chart.min(),
 				max = chart.max()
 				duration = chart.duration(),
-				ticks = chart.ticks();
+				ticks = chart.ticks(),
+				dotSize = chart.dotSize();
 
 			if( typeof xScale == 'undefined' || typeof yScale == 'undefined' ) {
 				
@@ -154,6 +157,18 @@ function simpleChart() {
 							.y(function(d) { return yScale(attributes.y(d)); })
 							.interpolate('cardinal');
 			
+			// -------------------------------- [Tip] -------------------------------- //
+			// tooltip
+			tip = d3.tip()
+						.attr('class', 'chart-tip chart-tip-' + index)
+						.html(function(d, i) { return d; });
+			
+			svg.call(tip);
+			
+			tipDiv = d3.select('.chart-tip-' + index);
+			
+			// -------------------------------- [/Tip] ------------------------------- //
+			
 			var color = attributes.color10(chart.int(15,150));
 			
 			// Draw linear Chart
@@ -175,19 +190,23 @@ function simpleChart() {
 				.duration(duration * 4)
 				.ease("linear")
 				.attr("stroke-dashoffset", 0);
-				
+			
 			// Append Dot's
 			svg
 				.select('.chart')
-				.selectAll('.circle-' + index)
+				.selectAll('.dot-' + index)
 				.data(data)
 				.enter()
 				.append('circle')
-				.attr('class', 'circle-' + index)
+				.attr('class', 'dot dot-' + index)
 				.attr('cx', function(d) { return xScale(new Date(attributes.x(d))); })
 				.attr('cy', function(d) { return yScale(attributes.y(d)); })
 				.attr('r', 0)
 				.style('fill', color)
+				.on('mouseenter', function(d) {
+					chart.showTip('<span class="text-left"><strong>x:</strong> ' + attributes.formatD(new Date(attributes.x(d))) + ' ' + attributes.months[Number(attributes.formatM(new Date(attributes.x(d))))] + '</span><br /><span><strong>y:</strong> ' + attributes.y(d) + '</span>', color);
+				})
+				.on('mouseleave', chart.hideTip )
 				.transition()
 				.delay(function(d, i) { return i * (duration * 2 / len); })
 				.duration(duration / 2)
@@ -198,10 +217,43 @@ function simpleChart() {
 		});
 	}
 	
+	// Convert Color Function from HEX to RGBA
+	chart.hexToRgba = function(color) {
+
+		R = hexToR(color);
+		G = hexToG(color);
+		B = hexToB(color);
+
+		function hexToR(h) {return parseInt((cutHex(h)).substring(0,2),16)}
+		function hexToG(h) {return parseInt((cutHex(h)).substring(2,4),16)}
+		function hexToB(h) {return parseInt((cutHex(h)).substring(4,6),16)}
+		function cutHex(h) {return (h.charAt(0)=="#") ? h.substring(1,7):h}
+		
+		return 'rgba(' + R + ',' + G + ',' + B + ',0.75)';
+		
+	}
+	
+	// Show Tooltip Function
+	chart.showTip = function(html, color) {
+		var colorRgba = chart.hexToRgba( color );
+		tip.style('background', colorRgba);
+		tip.style('color', colorRgba);
+		tip.html(html);
+		tip.show();
+	}
+	
+	// Hide Tooltip Function
+	chart.hideTip = function() {
+		tip.hide();
+		tip.html('');
+	}
+	
+	// Generate random INT Function
 	chart.int = function(max, min) {
 		return mF(mR() * (max - min)) + min;
 	};
 	
+	// Init All SVG Components
 	chart.chartInit = function(svg) {
 
 		var width = chart.width(), // Total width
@@ -293,10 +345,10 @@ function simpleChart() {
 
 var data = [],
 	graphs = 5, // Numbers of graphs
-	len = 8, // Tested values
+	len = 6, // Tested values
 	min = 15, // Min test value
 	max = 385, // Max test value
-	duration = 1000,
+	duration = 400,
 	mR = Math.random,
 	mF = Math.floor,
 	now = (new Date()).getTime(),
@@ -317,16 +369,17 @@ for( var i = 0; i < len; i++ ) {
 	}
 }
 
+// Parse Multi Chart
 var chart = simpleChart()
-					.width(800)
-					.height(600)
+					.width(460)
+					.height(460)
 					.min(min)
 					.max(max)
 					.margin({'top': 60, 'right': 60, 'bottom': 90, 'left': 80})
+					.dotSize(6)
 					.duration(duration)
 					.chartName('Линейный мульти-график');
 
-					
 for( var j = 0; j < graphs; j++ ) {
 
 	var dur = duration * j * 6;
@@ -345,3 +398,20 @@ for( var j = 0; j < graphs; j++ ) {
 	printCharts(j);
 
 }
+
+// Parse One Chart
+var chart2 = simpleChart()
+					.width(460)
+					.height(460)
+					.min(min)
+					.max(max)
+					.margin({'top': 60, 'right': 60, 'bottom': 90, 'left': 80})
+					.dotSize(6)
+					.duration(duration)
+					.chartName('Линейный график');
+
+d3
+	.select('#chart2')
+	.data([data[0]])
+	.call(chart2);
+
