@@ -268,8 +268,7 @@
 				var linePath = svg
 					.select('g.line-chart')
 					.append('path')
-					.attr('transform', 'translate(' + [xScale.rangeBand() / 2, 0] + ')')
-					;
+					.attr('transform', 'translate(' + [xScale.rangeBand() / 2, 0] + ')');
 				
 				setTimeout(function() {
 					linePath
@@ -475,10 +474,21 @@
 				.attr("d", area)
 				.attr('transform', 'translate(' + [xScale.rangeBand() / 2, 0] + ')');
 			
-			focus
+			var linePath = focus
 				.select(".line-chart path")
 				.attr("d", line)
 				.attr('transform', 'translate(' + [xScale.rangeBand() / 2, 0] + ')');
+		
+			// Animated Draw Line Chart
+			var pathLength = linePath.node().getTotalLength();
+			
+			linePath
+				.attr("stroke-dasharray", pathLength + " " + pathLength)
+				.attr("stroke-dashoffset", pathLength)
+				.transition()
+				.duration(delay / 2)
+				.ease("linear")
+				.attr("stroke-dashoffset", 0);
 			
 			focus
 				.selectAll(".rect-chart")
