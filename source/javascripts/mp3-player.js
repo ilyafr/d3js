@@ -47,8 +47,7 @@
 				audio.autoplay = true;
 				audio.loop = true;
 				
-				// [Обновление счетчика времени]
-
+				// [Refresh time counter]
 				audio.addEventListener('timeupdate', function(e) {
 					var currTime = audio.currentTime,
 						currMin = parseInt(currTime / 60),
@@ -74,7 +73,7 @@
 			
 		} else {
 			
-			alert('Вы пытаетесь проиграть не MP3-файл');
+			alert('You are played not MP3-file');
 			
 		}
 		prevSongURL = songURL;
@@ -104,7 +103,6 @@
 	}
 
 	function rafCallback() {
-
 		var bufferLength = analyser.frequencyBinCount;
 		var freqByteData = new Uint8Array(bufferLength);
 		
@@ -118,11 +116,8 @@
 				data.push({'x': i, 'y': percent, 'time': timeValue});
 			}
 		}
-		
 		printChart.data([data]).call(chart);
-		
 		window.requestAnimationFrame(rafCallback);
-
 	}
 
 	
@@ -191,7 +186,7 @@
 									.rangeBands([0, rwidth]);
 
 					cScale = d3.scale.linear()
-									.range(["blue", "red"]) // or use hex values
+									.range(["blue", "red"])
 									.domain([0, rwidth]);
 
 					svgChart = svg
@@ -201,7 +196,7 @@
 								.select('.player-direct-circle');
 					
 					tScale = d3.scale.linear()
-									.domain([0, 100]) // or use hex values
+									.domain([0, 100])
 									.range([0, rwidth]);					
 					
 				}
@@ -209,9 +204,7 @@
 				var equilizer = svgChart
 									.selectAll('rect')
 									.data(data);
-				
-				var time = 0;
-				
+
 				if(!activate) {
 					
 					equilizer.enter()
@@ -226,9 +219,7 @@
 				} else {
 					
 					equilizer
-							//.attr('width', 1)
 							.attr('height', function(d) { return rheight - yScale(d.y);})
-							//.attr('x', function(d) { return xScale(d.x); })
 							.attr('y', function(d) { return height - margin.bottom - (rheight - yScale(d.y)); });
 					
 				}
