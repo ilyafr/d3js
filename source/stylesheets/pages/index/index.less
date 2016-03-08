@@ -21,6 +21,9 @@ body:before {
 	display: inline-block;
 	vertical-align: middle;
 }
+input[type='file'] {
+	display: inline-block;
+}
 .svg-bg {
 	fill: rgba(0,0,0,0.05);
 }
@@ -119,4 +122,53 @@ body:before {
 	stroke: #fff;
 	fill-opacity: .125;
 	shape-rendering: crispEdges;
+}
+
+.player-direct {
+	position: relative;
+	&-line {
+		fill: none;
+		stroke: rgba(0,0,0,0.45);
+		shape-rendering: crispEdges;
+	}
+	&-circle {
+		fill: rgba(0,0,0,1.0);
+		cursor: pointer;
+	}
+}
+.player-btn {
+	&-frame {
+		fill: rgba(0,0,0,0.00001);
+		stroke: rgba(0,0,0,1.0);
+		stroke-width: 3px;
+		cursor: pointer;
+	}
+	&-polygon {
+		fill: rgba(0,0,0,1.0);
+	}
+}
+.player-equilizer,
+.player-pause-bg {
+	fill: rgba(0,0,0,1.0);
+}
+.player-play-btn {
+	.player-btn-polygon {
+		display: none;
+	}
+	.player-pause-group {
+		display: block;
+	}
+	&.pause {
+		.player-btn-polygon {
+			display: block;
+		}
+		.player-pause-group {
+			display: none;
+		}
+	}
+}
+.player-timer {
+	font-family: arial, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
 }
