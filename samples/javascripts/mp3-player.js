@@ -29,6 +29,7 @@
 		prevSongURL,
 		timeValue = 0,
 		data = data,
+		mC = Math.ceil,
 		mR = Math.round,
 		mF = Math.floor;
 	
@@ -110,7 +111,7 @@
 
 		var data = [];
 		for (var i = 0; i < analyser.frequencyBinCount; i++) {
-			if(i % 10 == 0) {
+			if(i % 19 == 0) {
 				var value = freqByteData[i];
 				var percent = value / 256;
 				data.push({'x': i, 'y': percent, 'time': timeValue});

@@ -120,6 +120,12 @@ module.exports = function(grunt) {
 						,'<%= dirs.input %>/javascripts/vendor/jquery.inputmask.3.x/jquery.inputmask.js'
 						,'bower_components/d3/d3.js'
 						,'bower_components/d3-tip/index.js'
+						
+						,'bower_components/underscore/underscore.js'
+						
+						,'node_modules/react/dist/react.js'
+						,'node_modules/react-dom/dist/react-dom.js'
+						,'<%= dirs.input %>/javascripts/vendor/babel-core/5.8.23/browser.min.js'
 					]
 				}
 			},
